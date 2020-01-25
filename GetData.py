@@ -3,8 +3,6 @@ import pandas as pd
 
 if __name__ == '__main__':
 
-    path = 'C:/Users/lachl/PycharmProjects/ShareData/'
-
     indicies = ["^GSPC", "QQQ", "^IXIC"]
 
     stockNames = ["BLDP", "AAPL", "MSFT", "FCEL", "NVAX", "QCOM", "CSCO", "PLUG", "INTC", "NFLX",
@@ -18,7 +16,8 @@ if __name__ == '__main__':
         print(indicie)
         prices = pd.DataFrame(yahoo.Get.Prices(indicie, period=period), columns=['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']).reset_index('Date (UTC)')
         prices['Date (UTC)'] = prices['Date (UTC)'].dt.date
-        prices.to_csv(path + "Indicies/" + indicie + ".csv", index=False)
+        prices.to_csv("Indicies/" + indicie + ".csv", index=False)
+
 
     for stock in stockNames:
         print(stock)
@@ -34,4 +33,4 @@ if __name__ == '__main__':
         except:
            prices['Dividends'] = 0.0
 
-        prices.to_csv(path + "Shares/" + stock +".csv", index=False)
+        prices.to_csv("Shares/" + stock +".csv", index=False)
